@@ -13,7 +13,7 @@ model_path = "last.pt"
 model = YOLO(model_path)
 
 # Lower the threshold for detection
-threshold = 0.5
+threshold = 0.6
 
 @app.get('/')
 def res():
