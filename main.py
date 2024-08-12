@@ -3,6 +3,8 @@ from fastapi.responses import JSONResponse
 from ultralytics import YOLO
 import cv2
 import numpy as np
+import uvicorn
+
 
 app = FastAPI()
 
@@ -17,7 +19,7 @@ threshold = 0.6
 
 @app.get('/')
 def res():
-    return {'message': "Server running on PORT 127.0.0.1"}
+    return {'message': "Poster Validation - Yolov8n onnx model running on DOCKER container..."}
     
 @app.post("/upload")
 async def upload_image(image: UploadFile = File(...)):
@@ -51,3 +53,7 @@ async def upload_image(image: UploadFile = File(...)):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, log_level="info")
